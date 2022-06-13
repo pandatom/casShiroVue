@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pandatom.example.mapper.UsersMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="userMap" type="com.pandatom.example.entity.Users">
+        <id column="user_id" property="userId" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="password_salt" property="passwordSalt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        user_id AS userId, username, password, password_salt AS passwordSalt
+    </sql>
+
+    <select id="queryUserByUsername" resultMap="userMap">
+        select * from tb_users
+        where username=#{username}
+    </select>
+
+</mapper>

@@ -1,0 +1,78 @@
+# 开发环境配置
+server:
+  # 服务器的HTTP端口，默认为80
+  port: 8084
+  servlet:
+    # 应用的访问路径
+    context-path: /jeecg-boot
+  # https 证书校验
+
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://127.0.0.1:3306/shiroTest
+      # MySQL如果是8.x   com.mysql.cj.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 12345678
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+  redis:
+    database: 0
+#    host: 192.168.100.230
+    host: 127.0.0.1
+    port: 6379
+    password: # 如果未单独配置默认为空即可
+    timeout: 1000
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+#  redis:
+#    database: 0
+#    #    host: 127.0.0.1
+#    host: 192.168.100.230
+#    lettuce:
+#      pool:
+#        max-active: 8   #最大连接数据库连接数,设 -1 为没有限制
+#        max-idle: 8     #最大等待连接中的数量,设 0 为没有限制
+#        max-wait: -1ms  #最大建立连接等待时间。如果超过此时间将接到异常。设为-1表示无限制。
+#        min-idle: 0     #最小等待连接中的数量,设 0 为没有限制
+#      shutdown-timeout: 100ms
+#    password: ''
+#    port: 6379
+#mybatis:
+#  mapper-locations: classpath:mapper/*Mapper.xml
+
+mybatis:
+  #  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+#mybatisPlus:
+#  # 搜索指定包别名
+#  typeAliasesPackage: com.pandatom.example.entity
+#  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+#  mapperLocations: classpath:mapper/*Mapper.xml
+#  # 加载全局的配置文件
+#  configLocation: classpath:mybatis/mybatis-config.xml
+swagger:
+  enabled: true
+
+#cas配置
+cas:
+  client-name: casClient-care
+  server:
+    url: http://127.0.0.1:8080/cas
+  project:
+    url: http://localhost:8081/jeecg-boot
+
+# 日志配置
+logging:
+  level:
+    com.pandatom: debug
+    org.springframework: warn
